@@ -1,0 +1,15 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 234
+  Width = 180
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'ConnectionDef=Curso_Pooled')
+    Left = 72
+    Top = 24
+  end
+  object FDPhysPgDriverLink: TFDPhysPgDriverLink
+    Left = 72
+    Top = 120
+  end
+end

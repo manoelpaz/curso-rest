@@ -1,0 +1,19 @@
+inherited ProvidersCadastro: TProvidersCadastro
+  Height = 196
+  Width = 428
+  object qrySearch: TFDQuery
+    Connection = FDConnection
+    Left = 352
+    Top = 64
+  end
+  object qryRecordCount: TFDQuery
+    Connection = FDConnection
+    Left = 272
+    Top = 66
+  end
+  object qryCRUD: TFDQuery
+    Connection = FDConnection
+    Left = 192
+    Top = 67
+  end
+end

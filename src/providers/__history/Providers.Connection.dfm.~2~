@@ -1,0 +1,9 @@
+object ProviderConnection: TProviderConnection
+  OldCreateOrder = False
+  Height = 150
+  Width = 215
+  object FDConnection: TFDConnection
+    Left = 88
+    Top = 48
+  end
+end
