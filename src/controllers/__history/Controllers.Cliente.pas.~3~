@@ -2,20 +2,18 @@ unit Controllers.Cliente;
 
 interface
 
-uses Horse;
-
 procedure Registry;
 
 implementation
 
-uses System.JSON, Data.DB, DataSet.Serialize, Services.Produto;
+uses System.JSON, Data.DB, Horse, DataSet.Serialize, Services.Cliente;
 
-procedure GetProdutos(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure GetClientes(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   LReturn: TJSONObject;
-  LService: TServicesProduto;
+  LService: TServicesCliente;
 begin
-  LService := TServicesProduto.Create;
+  LService := TServicesCliente.Create;
   try
     LReturn := TJSONObject.Create;
     LReturn.AddPair('data', LService.Select(Req.Query).ToJSONArray());
@@ -26,89 +24,13 @@ begin
   end;
 end;
 
-procedure GetProduto(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-var
-  LIdProduto: string;
-  LService: TServicesProduto;
-begin
-  LService := TServicesProduto.Create;
-  try
-    LIdProduto := Req.Params['id'];
-
-    if LService.Select(LIdProduto).IsEmpty then
-      raise EHorseException.Create(THTTPStatus.NotFound, 'Produto não cadastrado');
-
-    Res.Send(LService.qryCRUD.ToJSONObject());
-  finally
-    LService.Free;
-  end;
-end;
-
-procedure PostProduto(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-var
-  LProduto: TJSONObject;
-  LService: TServicesProduto;
-begin
-  LService := TServicesProduto.Create;
-  try
-    LProduto := Req.Body<TJSONObject>;
-    if LService.Insert(LProduto) then
-      Res.Send(LService.qryCRUD.ToJSONObject()).Status(THTTPStatus.Created);
-  finally
-    LService.Free;
-  end;
-end;
-
-procedure PutProduto(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-var
-  LIdProduto: string;
-  LProduto: TJSONObject;
-  LService: TServicesProduto;
-begin
-  LService := TServicesProduto.Create;
-  try
-    LIdProduto := Req.Params['id'];
-
-    if LService.Select(LIdProduto).IsEmpty then
-      raise EHorseException.Create(THTTPStatus.NotFound, 'Produto não cadastrado');
-
-    LProduto := Req.Body<TJSONObject>;
-
-    if LService.Update(LProduto) then
-      Res.Status(THTTPStatus.NoContent);
-  finally
-    LService.Free;
-  end;
-end;
-
-procedure DeleteProduto(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-var
-  LIdProduto: string;
-  LProduto: TJSONObject;
-  LService: TServicesProduto;
-begin
-  LService := TServicesProduto.Create;
-  try
-    LIdProduto := Req.Params['id'];
-
-    if LService.Select(LIdProduto).IsEmpty then
-      raise EHorseException.Create(THTTPStatus.NotFound, 'Produto não cadastrado');
-        LProduto := Req.Body<TJSONObject>;
-
-    if LService.Delete then
-      Res.Status(THTTPStatus.NoContent);
-  finally
-    LService.Free;
-  end;
-end;
-
 procedure Registry;
 begin
-  THorse.Get('/clientes', GetProdutos);
-  THorse.Get('/clientes/:id', GetProduto);
-  THorse.Post('/clientes', PostProduto);
-  THorse.Put('/clientes/:id', PutProduto);
-  THorse.Delete('/clientes/:id', DeleteProduto);
+  THorse.Get('/clientes', GetClientes);
+//  THorse.Get('/clientes/:id', GetCliente);
+//  THorse.Post('/clientes', PostCliente);
+//  THorse.Put('/clientes/:id', PutCliente);
+//  THorse.Delete('/clientes/:id', DeleteCliente);
 end;
 
 end.

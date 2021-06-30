@@ -1,0 +1,55 @@
+inherited ServicesPedido: TServicesPedido
+  inherited qrySearch: TFDQuery
+    SQL.Strings = (
+      'select p.id, p.id_cliente, p.id_usuario, p.data'
+      '  from pedido p'
+      ' where 1 = 1')
+    object qrySearchid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qrySearchid_cliente: TLargeintField
+      FieldName = 'id_cliente'
+      Origin = 'id_cliente'
+    end
+    object qrySearchid_usuario: TLargeintField
+      FieldName = 'id_usuario'
+      Origin = 'id_usuario'
+    end
+    object qrySearchdata: TSQLTimeStampField
+      FieldName = 'data'
+      Origin = 'data'
+    end
+  end
+  inherited qryRecordCount: TFDQuery
+    SQL.Strings = (
+      'select p.id, p.id_cliente, p.id_usuario, p.data'
+      '  from pedido p'
+      ' where 1 = 1')
+  end
+  inherited qryCRUD: TFDQuery
+    SQL.Strings = (
+      'select p.id, p.id_cliente, p.id_usuario, p.data'
+      '  from pedido p')
+    object qryCRUDid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qryCRUDid_cliente: TLargeintField
+      FieldName = 'id_cliente'
+      Origin = 'id_cliente'
+    end
+    object qryCRUDid_usuario: TLargeintField
+      FieldName = 'id_usuario'
+      Origin = 'id_usuario'
+    end
+    object qryCRUDdata: TSQLTimeStampField
+      FieldName = 'data'
+      Origin = 'data'
+    end
+  end
+end

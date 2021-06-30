@@ -2,13 +2,11 @@ unit Controllers.Cliente;
 
 interface
 
-uses Horse;
-
 procedure Registry;
 
 implementation
 
-uses System.JSON, Data.DB, DataSet.Serialize, Services.Cliente;
+uses System.JSON, Data.DB, Horse, DataSet.Serialize, Services.Cliente;
 
 procedure GetClientes(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
@@ -52,51 +50,9 @@ begin
   LService := TServicesCliente.Create;
   try
     LCliente := Req.Body<TJSONObject>;
+
     if LService.Insert(LCliente) then
       Res.Send(LService.qryCRUD.ToJSONObject()).Status(THTTPStatus.Created);
-  finally
-    LService.Free;
-  end;
-end;
-
-procedure PutCliente(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-var
-  LIdCliente: string;
-  LCliente: TJSONObject;
-  LService: TServicesCliente;
-begin
-  LService := TServicesCliente.Create;
-  try
-    LIdCliente := Req.Params['id'];
-
-    if LService.Select(LIdCliente).IsEmpty then
-      raise EHorseException.Create(THTTPStatus.NotFound, 'Cliente não cadastrado');
-
-    LCliente := Req.Body<TJSONObject>;
-
-    if LService.Update(LCliente) then
-      Res.Status(THTTPStatus.NoContent);
-  finally
-    LService.Free;
-  end;
-end;
-
-procedure DeleteCliente(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-var
-  LIdCliente: string;
-//  LCliente: TJSONObject;
-  LService: TServicesCliente;
-begin
-  LService := TServicesCliente.Create;
-  try
-    LIdCliente := Req.Params['id'];
-
-    if LService.Select(LIdCliente).IsEmpty then
-      raise EHorseException.Create(THTTPStatus.NotFound, 'Cliente não cadastrado');
-//        LCliente := Req.Body<TJSONObject>;
-
-    if LService.Delete then
-      Res.Status(THTTPStatus.NoContent);
   finally
     LService.Free;
   end;
@@ -107,8 +63,8 @@ begin
   THorse.Get('/clientes', GetClientes);
   THorse.Get('/clientes/:id', GetCliente);
   THorse.Post('/clientes', PostCliente);
-  THorse.Put('/clientes/:id', PutCliente);
-  THorse.Delete('/clientes/:id', DeleteCliente);
+//  THorse.Put('/clientes/:id', PutCliente);
+//  THorse.Delete('/clientes/:id', DeleteCliente);
 end;
 
 end.

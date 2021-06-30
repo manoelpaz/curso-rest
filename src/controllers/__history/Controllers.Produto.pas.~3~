@@ -1,0 +1,20 @@
+unit Controllers.Produto;
+
+interface
+
+procedure Registry;
+
+implementation
+
+uses System.JSON, Data.DB, Horse, DataSet.Serialize, Services.Produto;
+
+procedure Registry;
+begin
+  THorse.Get('/produtos', GetProdutos);
+//  THorse.Get('/produtos/:id', GetProduto);
+//  THorse.Post('/produtos', PostProduto);
+//  THorse.Put('/produtos/:id', PutProduto);
+//  THorse.Delete('/produtos/:id', DeleteProduto);
+end;
+
+end.

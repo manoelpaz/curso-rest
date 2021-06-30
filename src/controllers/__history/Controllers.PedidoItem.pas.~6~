@@ -1,0 +1,110 @@
+unit Controllers.PedidoItem;
+
+interface
+
+procedure Registry;
+
+implementation
+
+uses System.JSON, Data.DB, Horse, DataSet.Serialize, Services.PedidoItem;
+
+procedure GetPedidoItens(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  LReturn: TJSONObject;
+  LService: TServicesPedidoItem;
+begin
+  LService := TServicesPedidoItem.Create;
+  try
+    LReturn := TJSONObject.Create;
+    LReturn.AddPair('data', LService.Select(Req.Query).ToJSONArray());
+    LReturn.AddPair('records', TJSONNumber.Create(LService.Select));
+    Res.Send(LReturn);
+  finally
+    LService.Free;
+  end;
+end;
+
+procedure GetPedidoItem(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  LIdPedidoItem: string;
+  LService: TServicesPedidoItem;
+begin
+  LService := TServicesPedidoItem.Create;
+  try
+    LIdPedidoItem := Req.Params['id'];
+
+    if LService.Select(LIdPedidoItem).IsEmpty then
+      raise EHorseException.Create(THTTPStatus.NotFound, 'PedidoItem não cadastrado');
+
+    Res.Send(LService.qryCRUD.ToJSONObject());
+  finally
+    LService.Free;
+  end;
+end;
+
+procedure PostPedidoItem(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  LPedidoItem: TJSONObject;
+  LService: TServicesPedidoItem;
+begin
+  LService := TServicesPedidoItem.Create;
+  try
+    LPedidoItem := Req.Body<TJSONObject>;
+    if LService.Insert(LPedidoItem) then
+      Res.Send(LService.qryCRUD.ToJSONObject()).Status(THTTPStatus.Created);
+  finally
+    LService.Free;
+  end;
+end;
+
+procedure PutPedidoItem(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  LIdPedidoItem: string;
+  LPedidoItem: TJSONObject;
+  LService: TServicesPedidoItem;
+begin
+  LService := TServicesPedidoItem.Create;
+  try
+    LIdPedidoItem := Req.Params['id'];
+
+    if LService.Select(LIdPedidoItem).IsEmpty then
+      raise EHorseException.Create(THTTPStatus.NotFound, 'Item não cadastrado');
+
+    LPedidoItem := Req.Body<TJSONObject>;
+
+    if LService.Update(LPedidoItem) then
+      Res.Status(THTTPStatus.NoContent);
+  finally
+    LService.Free;
+  end;
+end;
+
+procedure DeletePedidoItem(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  LIdPedidoItem: string;
+  LService: TServicesPedidoItem;
+begin
+  LService := TServicesPedidoItem.Create;
+  try
+    LIdPedidoItem := Req.Params['id'];
+
+    if LService.Select(LIdPedidoItem).IsEmpty then
+      raise EHorseException.Create(THTTPStatus.NotFound, 'Item não cadastrado');
+
+    if LService.Delete then
+      Res.Status(THTTPStatus.NoContent);
+  finally
+    LService.Free;
+  end;
+end;
+
+procedure Registry;
+begin
+  THorse.Get('/itens', GetPedidoItens);
+  THorse.Get('/itens/:id', GetPedidoItem);
+  THorse.Post('/itens', PostPedidoItem);
+  THorse.Put('/itens/:id', PutPedidoItem);
+  THorse.Delete('/itens/:id', DeletePedidoItem);
+end;
+
+end.

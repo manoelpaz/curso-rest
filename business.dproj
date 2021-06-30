@@ -173,21 +173,39 @@
             <Form>ProvidersConnection</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="src\providers\Providers.Cadastro.pas">
-            <Form>ProvidersCadastro</Form>
+        <DCCReference Include="src\providers\Providers.Queries.pas">
+            <Form>ProvidersQueries</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\services\Services.Cliente.pas">
+            <Form>ServicesCliente</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="src\services\Services.Produto.pas">
             <Form>ServicesProduto</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="src\controllers\Controllers.Produto.pas"/>
-        <DCCReference Include="src\services\Services.Cliente.pas">
-            <Form>ServicesCliente</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="src\controllers\Controllers.Produto.pas"/>
         <DCCReference Include="src\controllers\Controllers.Cliente.pas"/>
+        <DCCReference Include="src\services\Services.Usuario.pas">
+            <Form>ServicesUsuario</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\controllers\Controllers.Usuario.pas"/>
+        <DCCReference Include="src\services\Services.Pedido.pas">
+            <Form>ServicesPedido</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\controllers\Controllers.Pedido.pas"/>
+        <DCCReference Include="src\services\Services.Pedido.Item.pas">
+            <Form>ServicesPedidoItem</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\controllers\Controllers.Pedido.Item.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

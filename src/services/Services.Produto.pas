@@ -3,15 +3,15 @@ unit Services.Produto;
 interface
 
 uses
-  System.SysUtils, System.Classes, Providers.Cadastro, FireDAC.Stan.Intf,
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.Phys.PG, FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, System.Generics.Collections;
+  FireDAC.Comp.Client, System.Generics.Collections, Providers.Queries;
 
 type
-  TServicesProduto = class(TProvidersCadastro)
+  TServicesProduto = class(TProvidersQueries)
     qrySearchid: TLargeintField;
     qrySearchnome: TWideStringField;
     qrySearchvalor: TFMTBCDField;

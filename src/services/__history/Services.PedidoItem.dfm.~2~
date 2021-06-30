@@ -1,0 +1,71 @@
+inherited ServicesPedidoItem: TServicesPedidoItem
+  inherited qrySearch: TFDQuery
+    SQL.Strings = (
+      'select i.id, i.id_pedido, i.id_produto, i.quantidade, i.valor'
+      '  from pedido_item i'
+      ' where 1 = 1')
+    object qrySearchid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qrySearchid_pedido: TLargeintField
+      FieldName = 'id_pedido'
+      Origin = 'id_pedido'
+    end
+    object qrySearchid_produto: TLargeintField
+      FieldName = 'id_produto'
+      Origin = 'id_produto'
+    end
+    object qrySearchquantidade: TFMTBCDField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+      Precision = 20
+      Size = 4
+    end
+    object qrySearchvalor: TFMTBCDField
+      FieldName = 'valor'
+      Origin = 'valor'
+      Precision = 20
+      Size = 4
+    end
+  end
+  inherited qryRecordCount: TFDQuery
+    SQL.Strings = (
+      'select count(i.id)'
+      '  from pedido_item i'
+      ' where 1 = 1')
+  end
+  inherited qryCRUD: TFDQuery
+    SQL.Strings = (
+      'select i.id, i.id_pedido, i.id_produto, i.quantidade, i.valor'
+      '  from pedido_item i')
+    object qryCRUDid: TLargeintField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object qryCRUDid_pedido: TLargeintField
+      FieldName = 'id_pedido'
+      Origin = 'id_pedido'
+    end
+    object qryCRUDid_produto: TLargeintField
+      FieldName = 'id_produto'
+      Origin = 'id_produto'
+    end
+    object qryCRUDquantidade: TFMTBCDField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+      Precision = 20
+      Size = 4
+    end
+    object qryCRUDvalor: TFMTBCDField
+      FieldName = 'valor'
+      Origin = 'valor'
+      Precision = 20
+      Size = 4
+    end
+  end
+end

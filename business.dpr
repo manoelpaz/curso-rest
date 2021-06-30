@@ -10,11 +10,17 @@ uses
   Horse.HandleException,
   System.SysUtils,
   Providers.Connection in 'src\providers\Providers.Connection.pas' {ProvidersConnection: TDataModule},
-  Providers.Cadastro in 'src\providers\Providers.Cadastro.pas' {ProvidersCadastro: TDataModule},
+  Providers.Queries in 'src\providers\Providers.Queries.pas' {ProvidersQueries: TDataModule},
+  Services.Cliente in 'src\services\Services.Cliente.pas' {ServicesCliente: TDataModule},
   Services.Produto in 'src\services\Services.Produto.pas' {ServicesProduto: TDataModule},
   Controllers.Produto in 'src\controllers\Controllers.Produto.pas',
-  Services.Cliente in 'src\services\Services.Cliente.pas' {ServicesCliente: TDataModule},
-  Controllers.Cliente in 'src\controllers\Controllers.Cliente.pas';
+  Controllers.Cliente in 'src\controllers\Controllers.Cliente.pas',
+  Services.Usuario in 'src\services\Services.Usuario.pas' {ServicesUsuario: TDataModule},
+  Controllers.Usuario in 'src\controllers\Controllers.Usuario.pas',
+  Services.Pedido in 'src\services\Services.Pedido.pas' {ServicesPedido: TDataModule},
+  Controllers.Pedido in 'src\controllers\Controllers.Pedido.pas',
+  Services.Pedido.Item in 'src\services\Services.Pedido.Item.pas' {ServicesPedidoItem: TDataModule},
+  Controllers.Pedido.Item in 'src\controllers\Controllers.Pedido.Item.pas';
 
 begin
   THorse
@@ -23,6 +29,9 @@ begin
 
   Controllers.Produto.Registry;
   Controllers.Cliente.Registry;
+  Controllers.Usuario.Registry;
+  Controllers.Pedido.Registry;
+  Controllers.Pedido.Item.Registry;
 
   THorse.Listen(9000);
 end.
