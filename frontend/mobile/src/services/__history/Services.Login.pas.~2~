@@ -1,0 +1,49 @@
+unit Services.Login;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Services.Base, Providers.Request, System.JSON, Providers.Session;
+
+type
+  TServiceLogin = class(TServiceBase)
+  private
+    { Private declarations }
+  public
+    procedure Login(const AUsername, APassword: string);
+  end;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+{ TServiceLogin }
+
+procedure TServiceLogin.Login(const AUsername, APassword: string);
+var
+  LUsuario: TJSONObject;
+  LResponse: IResponse;
+begin
+  if AUsername.Trim.IsEmpty or APassword.Trim.IsEmpty then
+    raise Exception.Create('Informe o usuário e a senha!');
+
+  LUsuario := TJSONObject.Create;
+  LUsuario.AddPair('username', AUsername);
+  LUsuario.AddPair('password', APassword);
+
+  LResponse := TRequest.New
+    .BaseURL('http://192.168.0.3:8000')
+    .Resource('login')
+    .AddBody(LUsuario)
+    .Post;
+
+  if (LResponse.StatusCode <> 200) then
+    raise Exception.Create(LResponse.JSONValue.GetValue<string>('error'));
+
+  TSession.GetInstance.Token.Access := LResponse.JSONValue.GetValue<string>('access');
+  TSession.GetInstance.Token.Refresh := LResponse.JSONValue.GetValue<string>('refresh');
+end;
+
+end.

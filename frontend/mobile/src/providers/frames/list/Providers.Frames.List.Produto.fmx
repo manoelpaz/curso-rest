@@ -1,0 +1,48 @@
+inherited FrameListProduto: TFrameListProduto
+  inherited retContent: TRectangle
+    inherited btnListItem: TButton
+      inherited lblDescricao: TLabel
+        Align = Top
+        Size.Height = 30.000000000000000000
+      end
+      object Layout1: TLayout
+        Align = Client
+        Size.Width = 350.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object txtValorProduto: TLabel
+          Align = Right
+          AutoSize = True
+          StyledSettings = [Style]
+          Margins.Right = 15.000000000000000000
+          Position.X = 185.000000000000000000
+          Size.Width = 150.000000000000000000
+          Size.Height = 18.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Roboto'
+          TextSettings.Font.Size = 15.000000000000000000
+          TextSettings.FontColor = xFF1464BE
+          TextSettings.HorzAlign = Trailing
+          Text = 'R$ 0,00'
+          TabOrder = 1
+        end
+        object txtEstoque: TLabel
+          Align = Left
+          AutoSize = True
+          StyledSettings = [Style]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Size.Width = 150.000000000000000000
+          Size.Height = 18.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Roboto'
+          TextSettings.Font.Size = 15.000000000000000000
+          TextSettings.FontColor = xFF5F5F60
+          Text = 'Estoque: 0'
+          TabOrder = 0
+        end
+      end
+    end
+  end
+end

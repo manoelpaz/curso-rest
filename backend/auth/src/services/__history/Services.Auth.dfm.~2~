@@ -1,0 +1,2 @@
+inherited ServiceAuth: TServiceAuth
+end

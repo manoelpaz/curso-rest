@@ -1,0 +1,2 @@
+inherited ServiceBaseCadastro1: TServiceBaseCadastro1
+end

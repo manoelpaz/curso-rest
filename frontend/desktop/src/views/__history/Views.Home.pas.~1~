@@ -1,0 +1,24 @@
+unit Views.Home;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Views.Base;
+
+type
+  TFrmBase1 = class(TFrmBase)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmBase1: TFrmBase1;
+
+implementation
+
+{$R *.dfm}
+
+end.

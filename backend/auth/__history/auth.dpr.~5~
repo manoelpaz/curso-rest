@@ -1,0 +1,21 @@
+program auth;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils,
+  Horse,
+  Horse.Jhonson,
+  Providers.Connection in 'src\providers\Providers.Connection.pas' {ProvidersConnection: TDataModule},
+  Controllers.Auth in 'src\controllers\Controllers.Auth.pas',
+  Services.Auth in 'src\services\Services.Auth.pas' {ServiceAuth: TDataModule};
+
+begin
+  THorse.Use(Jhonson());
+
+  Controllers.Auth.Registry;
+
+  THorse.Listen(9000);
+end.

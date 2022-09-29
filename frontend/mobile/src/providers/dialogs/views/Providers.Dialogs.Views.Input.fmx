@@ -1,0 +1,77 @@
+inherited FrmDialogsInput: TFrmDialogsInput
+  inherited lytContent: TLayout
+    object retContent: TRectangle
+      Align = Client
+      Fill.Color = claBlack
+      Opacity = 0.500000000000000000
+      Size.Width = 350.000000000000000000
+      Size.Height = 500.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object retMessage: TRectangle
+      Align = Center
+      Fill.Color = claWhite
+      Size.Width = 300.000000000000000000
+      Size.Height = 200.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      object edtInput: TLabelEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Top
+        StyleLookup = 'transparentedit'
+        TabOrder = 0
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 18.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 60.000000000000000000
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 60.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Size.Width = 260.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = 'Texto'
+        StyledSettings = [Style, FontColor]
+        FocusedColor = xFF1464BE
+        UnFocusedColor = xFF949494
+      end
+      object btnOK: TButton
+        StyledSettings = [Style, FontColor]
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 30.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 130.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'bluebutton'
+        TabOrder = 1
+        Text = 'OK'
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 18.000000000000000000
+        OnClick = btnOKClick
+      end
+      object btnCancelar: TButton
+        StyledSettings = [Style, FontColor]
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 30.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Position.X = 156.000000000000000000
+        Position.Y = 126.000000000000000000
+        Size.Width = 130.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'GrayButton'
+        TabOrder = 2
+        Text = 'Cancelar'
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 18.000000000000000000
+        OnClick = btnCancelarClick
+      end
+    end
+  end
+end

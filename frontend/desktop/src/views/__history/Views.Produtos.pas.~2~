@@ -1,0 +1,32 @@
+unit Views.Produtos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Views.Base.Cadastro, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.StdCtrls, Services.Produtos;
+
+type
+  TFrmProdutos = class(TFrmBaseCadastro)
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmProdutos: TFrmProdutos;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmProdutos.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FService := TServiceProdutos.Create(Self);
+end;
+
+end.

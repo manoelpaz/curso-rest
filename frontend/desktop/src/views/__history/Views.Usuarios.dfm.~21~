@@ -1,0 +1,247 @@
+inherited FrmUsuarios: TFrmUsuarios
+  Caption = 'FrmUsuarios'
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlHeader: TPanel
+    inherited lblTitle: TLabel
+      Top = 8
+      Width = 61
+      Caption = 'Usu'#225'rios'
+      ExplicitTop = 8
+      ExplicitWidth = 61
+    end
+  end
+  inherited CardPanel: TCardPanel
+    inherited CardVisualizar: TCard
+      inherited DBGrid: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'id'
+            Title.Alignment = taCenter
+            Title.Caption = 'C'#243'digo'
+            Width = 85
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'login'
+            Title.Caption = 'Login'
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nome'
+            Title.Caption = 'Nome'
+            Width = 370
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'sexo'
+            Title.Caption = 'Sexo'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'telefone'
+            Title.Caption = 'Fone'
+            Width = 85
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'status'
+            Title.Caption = 'Status'
+            Visible = True
+          end>
+      end
+      inherited pnlFiltros: TPanel
+        object lblPesquisaCodigo: TLabel
+          Left = 10
+          Top = 10
+          Width = 38
+          Height = 13
+          Caption = 'C'#243'digo'
+        end
+        object lblPesquisaNome: TLabel
+          Left = 76
+          Top = 10
+          Width = 30
+          Height = 13
+          Caption = 'Nome'
+        end
+        object edtPesquisaCodigo: TEdit
+          Left = 10
+          Top = 32
+          Width = 60
+          Height = 21
+          Alignment = taRightJustify
+          NumbersOnly = True
+          TabOrder = 0
+        end
+        object edtPesquisaNome: TEdit
+          Left = 76
+          Top = 32
+          Width = 709
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          TabOrder = 1
+        end
+      end
+    end
+    inherited CardCadastro: TCard
+      inherited pnlCadastro: TPanel
+        object lblCodigo: TLabel
+          Left = 10
+          Top = 10
+          Width = 38
+          Height = 13
+          Caption = 'C'#243'digo'
+        end
+        object lblNome: TLabel
+          Left = 10
+          Top = 37
+          Width = 30
+          Height = 13
+          Caption = 'Nome'
+        end
+        object lblValor: TLabel
+          Left = 10
+          Top = 64
+          Width = 24
+          Height = 13
+          Caption = 'Sexo'
+        end
+        object lblEstoque: TLabel
+          Left = 10
+          Top = 91
+          Width = 26
+          Height = 13
+          Caption = 'Fone'
+        end
+        object Label1: TLabel
+          Left = 178
+          Top = 10
+          Width = 29
+          Height = 13
+          Caption = 'Login'
+        end
+        object lblSenha: TLabel
+          Left = 370
+          Top = 10
+          Width = 32
+          Height = 13
+          Caption = 'Senha'
+        end
+        object imgPerfil: TImage
+          Left = 10
+          Top = 128
+          Width = 200
+          Height = 200
+          Center = True
+          Proportional = True
+        end
+        object edtCodigo: TDBEdit
+          Left = 66
+          Top = 7
+          Width = 85
+          Height = 21
+          DataField = 'id'
+          DataSource = dsCadastro
+          Enabled = False
+          TabOrder = 0
+        end
+        object edtNome: TDBEdit
+          Left = 66
+          Top = 34
+          Width = 551
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          DataField = 'nome'
+          DataSource = dsCadastro
+          TabOrder = 1
+        end
+        object edtTelefone: TDBEdit
+          Left = 66
+          Top = 88
+          Width = 100
+          Height = 21
+          Anchors = [akLeft, akTop, akRight]
+          DataField = 'telefone'
+          DataSource = dsCadastro
+          TabOrder = 2
+        end
+        object ckbStatus: TDBCheckBox
+          Left = 202
+          Top = 90
+          Width = 97
+          Height = 17
+          Anchors = [akTop, akRight]
+          Caption = 'Ativo?'
+          DataField = 'status'
+          DataSource = dsCadastro
+          TabOrder = 3
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+        end
+        object edtLogin: TDBEdit
+          Left = 234
+          Top = 7
+          Width = 100
+          Height = 21
+          DataField = 'login'
+          DataSource = dsCadastro
+          TabOrder = 4
+        end
+        object edtSexo: TDBComboBox
+          Left = 66
+          Top = 63
+          Width = 100
+          Height = 21
+          Style = csDropDownList
+          DataField = 'sexo'
+          DataSource = dsCadastro
+          Items.Strings = (
+            'Masculino'
+            'Feminino')
+          TabOrder = 5
+        end
+        object edtSenha: TDBEdit
+          Left = 426
+          Top = 7
+          Width = 100
+          Height = 21
+          DataField = 'senha'
+          DataSource = dsCadastro
+          PasswordChar = '*'
+          TabOrder = 6
+        end
+        object btnAlterarFotoPerfil: TButton
+          Left = 14
+          Top = 334
+          Width = 95
+          Height = 25
+          Caption = 'Alterar'
+          TabOrder = 7
+          OnClick = btnAlterarFotoPerfilClick
+        end
+        object btnLimparFotoPerfil: TButton
+          Left = 111
+          Top = 334
+          Width = 95
+          Height = 25
+          Caption = 'Limpar'
+          TabOrder = 8
+          OnClick = btnLimparFotoPerfilClick
+        end
+      end
+    end
+  end
+  object OpenDialog: TOpenDialog
+    Left = 25
+    Top = 420
+  end
+end

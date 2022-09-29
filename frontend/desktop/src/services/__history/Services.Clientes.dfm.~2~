@@ -1,0 +1,14 @@
+inherited ServiceClientes: TServiceClientes
+  inherited mtPesquisa: TFDMemTable
+    object mtPesquisais: TIntegerField
+      FieldName = 'is'
+    end
+    object mtPesquisanome: TStringField
+      FieldName = 'nome'
+      Size = 500
+    end
+    object mtPesquisastatus: TIntegerField
+      FieldName = 'status'
+    end
+  end
+end

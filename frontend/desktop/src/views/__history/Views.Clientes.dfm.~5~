@@ -1,0 +1,42 @@
+inherited FrmClientes: TFrmClientes
+  Caption = ''
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlHeader: TPanel
+    inherited lblTitle: TLabel
+      Width = 55
+      Caption = 'Clientes'
+      ExplicitWidth = 55
+    end
+  end
+  inherited CardPanel: TCardPanel
+    inherited CardVisualizar: TCard
+      inherited DBGrid: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'is'
+            Title.Alignment = taCenter
+            Title.Caption = 'C'#243'digo'
+            Width = 85
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nome'
+            Title.Caption = 'Nome'
+            Width = 550
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'status'
+            Title.Caption = 'Status'
+            Width = 100
+            Visible = True
+          end>
+      end
+    end
+  end
+end

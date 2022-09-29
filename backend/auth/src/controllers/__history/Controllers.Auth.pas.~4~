@@ -1,0 +1,57 @@
+unit Controllers.Auth;
+
+interface
+
+procedure Registry;
+
+implementation
+
+uses System.JSON, Horse, Services.Auth;
+
+function GetToken: string;
+begin
+
+end;
+
+procedure DoLogin(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  LContent,
+  LToken: TJSONObject;
+  LUsuario,
+  LSenha: string;
+  LService: TServiceAuth;
+begin
+  LContent := Req.Body<TJSONObject>;
+
+  if not LContent.TryGetValue<string>('username', LUsuario) then
+    raise EHorseException.Create(THTTPStatus.BadRequest, 'Usuário não informado');
+
+  if not LContent.TryGetValue<string>('password', LSenha) then
+    raise EHorseException.Create(THTTPStatus.BadRequest, 'Senha não informada');
+
+  LService := TServiceAuth.Create(nil);
+  try
+    if not LService.AllowAccess(LUsuario, LSenha) then
+      raise EHorseException.Create(THTTPStatus.Unauthorized, 'Usuário não autorizado');
+
+    LToken := TJSONObject.Create;
+    LToken.AddPair('access', GetToken);
+    LToken.AddPair('refresh', GetToken);
+    Res.Send(LToken);
+  finally
+    LService.Free;
+  end;
+end;
+
+procedure RenewToken(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+begin
+
+end;
+
+procedure Registry;
+begin
+  THorse.Post('/login', DoLogin);
+  THorse.Get('/refresh', RenewToken);
+end;
+
+end.

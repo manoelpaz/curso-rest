@@ -1,0 +1,9 @@
+inherited FrmBase1: TFrmBase1
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'FrmBase1'
+  ClientHeight = 600
+  ClientWidth = 800
+  PixelsPerInch = 96
+  TextHeight = 13
+end

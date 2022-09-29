@@ -1,0 +1,14 @@
+unit Controller.Auth;
+
+interface
+
+procedure Registry;
+
+implementation
+
+procedure Registry;
+begin
+
+end;
+
+end.

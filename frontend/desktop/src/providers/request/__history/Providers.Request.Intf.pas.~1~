@@ -1,0 +1,7 @@
+unit Providers.Request.Intf;
+
+interface
+
+implementation
+
+end.

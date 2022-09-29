@@ -1,0 +1,52 @@
+unit Views.Produtos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Views.Base.Cadastro, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.StdCtrls, Services.Produtos,
+  Vcl.DBCtrls, Vcl.Mask;
+
+type
+  TFrmProdutos = class(TFrmBaseCadastro)
+    lblCodigo: TLabel;
+    edtCodigo: TDBEdit;
+    lblNome: TLabel;
+    edtNome: TDBEdit;
+    ckbStatus: TDBCheckBox;
+    lblValor: TLabel;
+    edtValor: TDBEdit;
+    lblEstoque: TLabel;
+    edtEstoque: TDBEdit;
+    lblPesquisaCodigo: TLabel;
+    lblPesquisaNome: TLabel;
+    edtPesquisaCodigo: TEdit;
+    edtPesquisaNome: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure dsCadastroStateChange(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmProdutos.dsCadastroStateChange(Sender: TObject);
+begin
+  inherited;
+
+  if (dsCadastro.DataSet.State in dsEditModes) then
+    edtNome.SetFocus;
+end;
+
+procedure TFrmProdutos.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FService := TServiceProdutos.Create(Self);
+end;
+
+end.

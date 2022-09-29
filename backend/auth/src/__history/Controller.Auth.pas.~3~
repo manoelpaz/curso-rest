@@ -1,0 +1,31 @@
+unit Controller.Auth;
+
+interface
+
+procedure Registry;
+
+implementation
+
+uses Horse;
+
+procedure DoLogin;
+begin
+
+end;
+
+procedure RenewToken;
+begin
+
+end;
+
+procedure Registry;
+begin
+    THorse.Post('/login', DoLogin);
+    THorse.Get('/refresh', RenewToken);
+//    procedure(Req: THorseRequest; Res: THorseResponse; Next: TProc)
+//    begin
+//      Res.Send('pong');
+//    end);
+end;
+
+end.

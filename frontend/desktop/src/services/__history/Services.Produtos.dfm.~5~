@@ -1,0 +1,36 @@
+inherited ServiceProdutos: TServiceProdutos
+  inherited mtPesquisa: TFDMemTable
+    object mtPesquisaid: TLargeintField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object mtPesquisanome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Size = 60
+    end
+    object mtPesquisavalor: TFMTBCDField
+      FieldName = 'valor'
+      Origin = 'valor'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Precision = 20
+      Size = 4
+    end
+    object mtPesquisastatus: TSmallintField
+      Alignment = taLeftJustify
+      FieldName = 'status'
+      Origin = 'status'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      OnGetText = mtPesquisastatusGetText
+    end
+    object mtPesquisaestoque: TFMTBCDField
+      FieldName = 'estoque'
+      Origin = 'estoque'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Precision = 20
+      Size = 4
+    end
+  end
+end

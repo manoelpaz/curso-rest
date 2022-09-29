@@ -1,0 +1,92 @@
+unit Views.Usuarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Views.Base.Cadastro, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Buttons, Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.StdCtrls, Services.Usuarios,
+  Vcl.DBCtrls, Vcl.Mask;
+
+type
+  TFrmUsuarios = class(TFrmBaseCadastro)
+    lblCodigo: TLabel;
+    edtCodigo: TDBEdit;
+    lblNome: TLabel;
+    edtNome: TDBEdit;
+    lblValor: TLabel;
+    lblEstoque: TLabel;
+    edtTelefone: TDBEdit;
+    ckbStatus: TDBCheckBox;
+    Label1: TLabel;
+    edtLogin: TDBEdit;
+    edtSexo: TDBComboBox;
+    lblSenha: TLabel;
+    edtSenha: TDBEdit;
+    lblPesquisaCodigo: TLabel;
+    edtPesquisaCodigo: TEdit;
+    lblPesquisaNome: TLabel;
+    edtPesquisaNome: TEdit;
+    imgPerfil: TImage;
+    btnAlterarFotoPerfil: TButton;
+    btnLimparFotoPerfil: TButton;
+    OpenDialog: TOpenDialog;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure dsCadastroDataChange(Sender: TObject; Field: TField);
+    procedure btnAlterarFotoPerfilClick(Sender: TObject);
+    procedure btnLimparFotoPerfilClick(Sender: TObject);
+  protected
+    procedure DoBeforeList; override;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmUsuarios.btnAlterarFotoPerfilClick(Sender: TObject);
+begin
+  inherited;
+
+  if OpenDialog.Execute then
+    imgPerfil.Picture.LoadFromFile(OpenDialog.FileName);
+
+end;
+
+procedure TFrmUsuarios.btnLimparFotoPerfilClick(Sender: TObject);
+begin
+  inherited;
+
+  imgPerfil.Picture := nil;
+end;
+
+procedure TFrmUsuarios.DoBeforeList;
+begin
+  inherited;
+  FService.Request
+    .ClearParams
+    .AddParam('id', edtPesquisaCodigo.Text)
+    .AddParam('nome', edtPesquisaNome.Text);
+end;
+
+procedure TFrmUsuarios.dsCadastroDataChange(Sender: TObject; Field: TField);
+begin
+  inherited;
+
+  if (dsCadastro.DataSet.State in dsEditModes) then
+    edtNome.SetFocus;
+end;
+
+procedure TFrmUsuarios.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FService := TServiceUsuarios.Create(Self);
+end;
+
+procedure TFrmUsuarios.FormShow(Sender: TObject);
+begin
+  inherited;
+  edtPesquisaCodigo.SetFocus;
+end;
+
+end.

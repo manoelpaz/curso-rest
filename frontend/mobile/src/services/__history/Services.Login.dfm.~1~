@@ -1,0 +1,2 @@
+inherited ServiceLogin: TServiceLogin
+end

@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A47F41FE-199D-4806-A6C7-EA6EB7D820CB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="backend\business\business.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="backend\auth\auth.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="frontend\desktop\Desktop.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="frontend\mobile\Mobile.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="business">
+        <MSBuild Projects="backend\business\business.dproj"/>
+    </Target>
+    <Target Name="business:Clean">
+        <MSBuild Projects="backend\business\business.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="business:Make">
+        <MSBuild Projects="backend\business\business.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="auth">
+        <MSBuild Projects="backend\auth\auth.dproj"/>
+    </Target>
+    <Target Name="auth:Clean">
+        <MSBuild Projects="backend\auth\auth.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="auth:Make">
+        <MSBuild Projects="backend\auth\auth.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Desktop">
+        <MSBuild Projects="frontend\desktop\Desktop.dproj"/>
+    </Target>
+    <Target Name="Desktop:Clean">
+        <MSBuild Projects="frontend\desktop\Desktop.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Desktop:Make">
+        <MSBuild Projects="frontend\desktop\Desktop.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Mobile">
+        <MSBuild Projects="frontend\mobile\Mobile.dproj"/>
+    </Target>
+    <Target Name="Mobile:Clean">
+        <MSBuild Projects="frontend\mobile\Mobile.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Mobile:Make">
+        <MSBuild Projects="frontend\mobile\Mobile.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="business;auth;Desktop;Mobile"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="business:Clean;auth:Clean;Desktop:Clean;Mobile:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="business:Make;auth:Make;Desktop:Make;Mobile:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
